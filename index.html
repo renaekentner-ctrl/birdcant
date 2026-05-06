@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Feathercant Translator</title>
+  <title>Birdcant Translator</title>
   <style>
     body {
       background: #18181b;
       color: white;
-      font-family: Arial;
-      padding: 40px;
-      max-width: 900px;
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      max-width: 1000px;
       margin: auto;
     }
 
-    textarea {
+    h1 {
+      font-size: 42px;
+    }
+
+    textarea, input, select {
       width: 100%;
-      height: 140px;
       background: #27272a;
       color: white;
-      border: 1px solid #3f3f46;
+      border: 1px solid #52525b;
       border-radius: 10px;
       padding: 12px;
       margin-top: 10px;
+      font-size: 16px;
+    }
+
+    textarea {
+      height: 130px;
     }
 
     button {
@@ -31,76 +39,267 @@
       border: none;
       cursor: pointer;
       margin-top: 10px;
+      margin-right: 8px;
+      font-size: 15px;
     }
 
     .box {
       background: #27272a;
-      padding: 20px;
-      border-radius: 12px;
-      margin-top: 20px;
+      padding: 22px;
+      border-radius: 14px;
+      margin-top: 22px;
+    }
+
+    .entry {
+      border-bottom: 1px solid #3f3f46;
+      padding: 8px 0;
+    }
+
+    .cant {
+      color: #facc15;
+      font-weight: bold;
+    }
+
+    .small {
+      color: #a1a1aa;
+      font-size: 14px;
     }
   </style>
 </head>
+
 <body>
 
-<h1>🪶 Feathercant Translator</h1>
-
-<textarea id="input" placeholder="Type a phrase..."></textarea>
-
-<br>
-<button onclick="translateText()">Translate</button>
+<h1>🦆 Birdcant Translator</h1>
+<p class="small">A secret bird-themed cant for Mallard and the flock.</p>
 
 <div class="box">
+  <h2>Translator</h2>
+
+  <select id="mode">
+    <option value="toCant">English → Birdcant</option>
+    <option value="fromCant">Birdcant → English</option>
+  </select>
+
+  <textarea id="input" placeholder="Type a phrase..."></textarea>
+
+  <button onclick="translateText()">Translate</button>
+  <button onclick="randomPhrase()">Random Phrase</button>
+
   <h2>Translation</h2>
-  <div id="output"></div>
+  <div id="output" class="cant">Your translation will appear here...</div>
 </div>
 
 <div class="box">
-  <h2>Dictionary</h2>
+  <h2>Dictionary Search</h2>
+  <input id="search" placeholder="Search English or Birdcant..." oninput="loadDictionary()">
   <div id="dictionary"></div>
 </div>
 
 <script>
 const dictionary = {
+  "trusted friend": "mallard",
+  "friend": "mallard",
+  "ally": "mallard",
+  "newcomer": "duckling",
+  "fool": "goose",
+  "noble": "peacock",
+  "rich person": "peacock",
   "guard": "hawk",
   "guards": "hawks",
+  "soldier": "hawk",
+  "authority": "hawk",
+  "scholar": "owl",
+  "mage": "owl",
+  "spy": "crow",
+  "informant": "crow",
+  "assassin": "raven",
+  "liar": "gull",
+  "messenger": "pigeon",
+  "thief": "magpie",
+
+  "safehouse": "pond",
+  "safe house": "pond",
+  "hideout": "nest",
+  "stash": "nest",
+  "old hideout": "old nest",
+  "safe place": "warm nest",
+  "unsafe place": "cold nest",
+  "abandoned place": "empty nest",
+  "secret room": "hollow tree",
+  "hidden path": "reedbed",
+  "tavern": "roost",
+  "inn": "roost",
+  "noble district": "high branch",
+  "slums": "low branch",
+  "dangerous district": "marsh",
+  "marketplace": "market seeds",
+  "prison": "cage",
+  "jail": "cage",
+  "guardhouse": "coop",
+  "guildhall": "aviary",
+  "city walls": "cliffs",
+
+  "coin": "shiny seed",
   "gold": "shiny seed",
   "money": "seeds",
-  "safehouse": "pond",
-  "hideout": "nest",
-  "danger": "storm",
-  "friend": "mallard",
-  "spy": "crow",
-  "assassin": "raven",
-  "target": "worm",
-  "escape": "take wing",
-  "meeting": "flock",
-  "weapon": "talon",
-  "thief": "magpie",
-  "night": "moonflight",
+  "large payment": "fat seed",
+  "fake coin": "cracked seed",
+  "message": "feather",
   "warning": "black feather",
-  "secret": "blue feather"
+  "peace": "white feather",
+  "blood": "red feather",
+  "secret": "blue feather",
+  "betrayal": "broken feather",
+  "valuable item": "egg",
+  "major prize": "golden egg",
+  "trap": "rotten egg",
+  "lockbox": "shell",
+  "chest": "shell",
+  "dagger": "beak",
+  "weapon": "talon",
+  "lockpick": "claw",
+  "disguise": "wing",
+  "bad disguise": "plucked wing",
+  "password": "song",
+  "coin purse": "seed bag",
+  "clue": "breadcrumb",
+  "clues": "breadcrumbs",
+
+  "escape": "take wing",
+  "run": "take wing",
+  "leave quickly": "take wing",
+  "stay hidden": "fly low",
+  "act boldly": "fly high",
+  "watch": "circle",
+  "scout": "circle",
+  "wait": "perch",
+  "hide overnight": "roost",
+  "hide": "nest",
+  "open a lock": "crack the shell",
+  "steal": "pluck",
+  "pretend": "preen",
+  "confess": "sing sour",
+  "lie": "sing sweet",
+  "warn": "chirp",
+  "raise alarm": "caw",
+  "attack": "peck",
+  "leave a mark": "scratch",
+  "plan": "brood",
+  "travel far": "migrate",
+  "change identity": "molt",
+  "start the plan": "hatch",
+  "fail": "lay an egg",
+  "cause trouble": "ruffle feathers",
+  "stop escape": "clip wings",
+  "pay the crew": "feed the flock",
+  "follow clues": "follow the crumbs",
+
+  "danger": "storm",
+  "violence": "thunder",
+  "immediate attack": "lightning",
+  "trouble": "rain",
+  "confusion": "fog",
+  "safe": "clear skies",
+  "all clear": "still water",
+  "something feels wrong": "ripples",
+  "injured": "broken wing",
+  "compromised": "broken wing",
+  "captured": "snared",
+  "imprisoned": "caged",
+  "being followed": "hunted",
+  "guards nearby": "hawks circling",
+  "hidden enemy": "fox in the reeds",
+  "assassin nearby": "cat in the yard",
+  "talking too much": "open beak",
+  "evidence": "loose feathers",
+  "someone got hurt": "bloody feathers",
+  "no help": "empty sky",
+
+  "dawn": "first song",
+  "morning": "morning flight",
+  "noon": "high sun",
+  "evening": "long shadow",
+  "dusk": "last song",
+  "night": "moonflight",
+  "late night": "owl hour",
+  "very early morning": "before the flock wakes",
+  "after midnight": "after the roost quiets",
+  "time to leave": "migration season",
+  "plan begins": "hatching day",
+
+  "target": "worm",
+  "rich target": "fat worm",
+  "easy target": "blind worm",
+  "dangerous target": "thorny worm",
+  "burglary": "nest raid",
+  "theft": "egg lift",
+  "smuggling": "feather pass",
+  "stealth mission": "silent flight",
+  "escape at night": "night migration",
+  "lockpicking": "shell cracking",
+  "forged message": "false song",
+  "stolen identity": "borrowed feathers",
+  "cover tracks": "clipped trail",
+  "lost trail": "cold trail",
+  "recent tracks": "fresh crumbs"
 };
 
-function translateText() {
-  let text = document.getElementById("input").value.toLowerCase();
+const examples = [
+  "There are guards near the safehouse",
+  "The noble has gold",
+  "The target is dangerous",
+  "We should escape at night",
+  "The spy left a warning",
+  "Stay hidden until dusk",
+  "The guards are surrounding the money",
+  "Someone betrayed the hideout"
+];
 
-  for (const [plain, cant] of Object.entries(dictionary)) {
-    const regex = new RegExp("\\\\b" + plain + "\\\\b", "gi");
-    text = text.replace(regex, cant);
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function translateText() {
+  let text = document.getElementById("input").value;
+  const mode = document.getElementById("mode").value;
+
+  let entries = Object.entries(dictionary);
+
+  if (mode === "fromCant") {
+    entries = entries.map(([english, cant]) => [cant, english]);
+  }
+
+  entries.sort((a, b) => b[0].length - a[0].length);
+
+  for (const [from, to] of entries) {
+    const regex = new RegExp("\\b" + escapeRegExp(from) + "\\b", "gi");
+    text = text.replace(regex, to);
   }
 
   document.getElementById("output").innerText = text;
 }
 
 function loadDictionary() {
+  const search = document.getElementById("search").value.toLowerCase();
   let html = "";
 
-  for (const [plain, cant] of Object.entries(dictionary)) {
-    html += `<p><b>${plain}</b> → ${cant}</p>`;
-  }
+  Object.entries(dictionary).forEach(([english, cant]) => {
+    if (
+      english.toLowerCase().includes(search) ||
+      cant.toLowerCase().includes(search)
+    ) {
+      html += `<div class="entry"><b>${english}</b> → <span class="cant">${cant}</span></div>`;
+    }
+  });
 
-  document.getElementById("dictionary").innerHTML = html;
+  document.getElementById("dictionary").innerHTML = html || "No results found.";
+}
+
+function randomPhrase() {
+  const phrase = examples[Math.floor(Math.random() * examples.length)];
+  document.getElementById("input").value = phrase;
+  document.getElementById("mode").value = "toCant";
+  translateText();
 }
 
 loadDictionary();
