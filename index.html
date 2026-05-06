@@ -8,16 +8,16 @@
       color: white;
       font-family: Arial, sans-serif;
       padding: 30px;
-      max-width: 1000px;
+      max-width: 1150px;
       margin: auto;
     }
 
-    h1 {
-      font-size: 42px;
-    }
+    h1 { font-size: 42px; margin-bottom: 5px; }
+    h2 { margin-top: 0; }
 
     textarea, input, select {
       width: 100%;
+      box-sizing: border-box;
       background: #27272a;
       color: white;
       border: 1px solid #52525b;
@@ -27,9 +27,7 @@
       font-size: 16px;
     }
 
-    textarea {
-      height: 130px;
-    }
+    textarea { height: 130px; }
 
     button {
       background: white;
@@ -64,6 +62,22 @@
       color: #a1a1aa;
       font-size: 14px;
     }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    .pill {
+      display: inline-block;
+      background: #3f3f46;
+      padding: 6px 10px;
+      border-radius: 999px;
+      margin: 3px;
+      font-size: 13px;
+      color: #e4e4e7;
+    }
   </style>
 </head>
 
@@ -84,6 +98,7 @@
 
   <button onclick="translateText()">Translate</button>
   <button onclick="randomPhrase()">Random Phrase</button>
+  <button onclick="clearText()">Clear</button>
 
   <h2>Translation</h2>
   <div id="output" class="cant">Your translation will appear here...</div>
@@ -92,157 +107,376 @@
 <div class="box">
   <h2>Dictionary Search</h2>
   <input id="search" placeholder="Search English or Birdcant..." oninput="loadDictionary()">
-  <div id="dictionary"></div>
+
+  <select id="categoryFilter" onchange="loadDictionary()">
+    <option value="All">All Categories</option>
+  </select>
+
+  <div id="dictionary" class="grid"></div>
+</div>
+
+<div class="box">
+  <h2>Quick Category Guide</h2>
+  <div id="categoryPills"></div>
 </div>
 
 <script>
-const dictionary = {
-  "trusted friend": "mallard",
-  "friend": "mallard",
-  "ally": "mallard",
-  "newcomer": "duckling",
-  "fool": "goose",
-  "noble": "peacock",
-  "rich person": "peacock",
-  "guard": "hawk",
-  "guards": "hawks",
-  "soldier": "hawk",
-  "authority": "hawk",
-  "scholar": "owl",
-  "mage": "owl",
-  "spy": "crow",
-  "informant": "crow",
-  "assassin": "raven",
-  "liar": "gull",
-  "messenger": "pigeon",
-  "thief": "magpie",
+const entries = [
+  // PEOPLE
+  ["People", "friend", "mallard"],
+  ["People", "trusted friend", "mallard"],
+  ["People", "ally", "mallard"],
+  ["People", "crew", "flock"],
+  ["People", "group", "flock"],
+  ["People", "gang", "flock"],
+  ["People", "newcomer", "duckling"],
+  ["People", "child", "duckling"],
+  ["People", "fool", "goose"],
+  ["People", "idiot", "goose"],
+  ["People", "loud person", "goose"],
+  ["People", "noble", "peacock"],
+  ["People", "rich person", "peacock"],
+  ["People", "show off", "peacock"],
+  ["People", "guard", "hawk"],
+  ["People", "guards", "hawks"],
+  ["People", "soldier", "hawk"],
+  ["People", "authority", "hawk"],
+  ["People", "captain", "falcon"],
+  ["People", "elite guard", "falcon"],
+  ["People", "scholar", "owl"],
+  ["People", "mage", "owl"],
+  ["People", "wizard", "owl"],
+  ["People", "priest", "white owl"],
+  ["People", "healer", "dove"],
+  ["People", "spy", "crow"],
+  ["People", "informant", "crow"],
+  ["People", "assassin", "raven"],
+  ["People", "killer", "raven"],
+  ["People", "liar", "gull"],
+  ["People", "con artist", "gull"],
+  ["People", "messenger", "pigeon"],
+  ["People", "courier", "pigeon"],
+  ["People", "thief", "magpie"],
+  ["People", "criminal", "blackbird"],
+  ["People", "beggar", "sparrow"],
+  ["People", "merchant", "seedkeeper"],
+  ["People", "shopkeeper", "seedkeeper"],
+  ["People", "barkeep", "roostkeeper"],
+  ["People", "bartender", "roostkeeper"],
+  ["People", "drunk", "wobblegoose"],
+  ["People", "enemy", "fox"],
+  ["People", "traitor", "broken feather"],
 
-  "safehouse": "pond",
-  "safe house": "pond",
-  "hideout": "nest",
-  "stash": "nest",
-  "old hideout": "old nest",
-  "safe place": "warm nest",
-  "unsafe place": "cold nest",
-  "abandoned place": "empty nest",
-  "secret room": "hollow tree",
-  "hidden path": "reedbed",
-  "tavern": "roost",
-  "inn": "roost",
-  "noble district": "high branch",
-  "slums": "low branch",
-  "dangerous district": "marsh",
-  "marketplace": "market seeds",
-  "prison": "cage",
-  "jail": "cage",
-  "guardhouse": "coop",
-  "guildhall": "aviary",
-  "city walls": "cliffs",
+  // DREN / WORLD CODE NAMES
+  ["Dren Codes", "Dren", "the Great Nest"],
+  ["Dren Codes", "realm", "the Great Nest"],
+  ["Dren Codes", "kingdom", "the Great Nest"],
+  ["Dren Codes", "the king", "the Crowned Hawk"],
+  ["Dren Codes", "king", "the Crowned Hawk"],
+  ["Dren Codes", "the queen", "the Silver Swan"],
+  ["Dren Codes", "queen", "the Silver Swan"],
+  ["Dren Codes", "royal family", "the High Roost"],
+  ["Dren Codes", "royal court", "the High Roost"],
+  ["Dren Codes", "the sovereigns", "the Three Great Wings"],
+  ["Dren Codes", "sovereigns", "the Three Great Wings"],
+  ["Dren Codes", "three sovereigns", "the Three Great Wings"],
+  ["Dren Codes", "free seats", "the Open Perches"],
+  ["Dren Codes", "the free seats", "the Open Perches"],
+  ["Dren Codes", "capital", "the Crown Nest"],
+  ["Dren Codes", "Old Vare", "the Dry River Nest"],
+  ["Dren Codes", "old vare", "the Dry River Nest"],
+  ["Dren Codes", "Ekdmere", "the Deep Reed"],
+  ["Dren Codes", "ekdmere", "the Deep Reed"],
+  ["Dren Codes", "Karric", "the Trade Roost"],
+  ["Dren Codes", "karric", "the Trade Roost"],
+  ["Dren Codes", "Nagamori", "the Iron Crane"],
+  ["Dren Codes", "nagamori", "the Iron Crane"],
+  ["Dren Codes", "Iskavara", "the Ash Raven"],
+  ["Dren Codes", "iskavara", "the Ash Raven"],
+  ["Dren Codes", "Cassandra Caravana", "the Red Jay"],
+  ["Dren Codes", "cassandra caravana", "the Red Jay"],
+  ["Dren Codes", "religion of Old Vare", "the River Song"],
+  ["Dren Codes", "vow-water", "blessed pond"],
+  ["Dren Codes", "Vow-Water", "blessed pond"],
 
-  "coin": "shiny seed",
-  "gold": "shiny seed",
-  "money": "seeds",
-  "large payment": "fat seed",
-  "fake coin": "cracked seed",
-  "message": "feather",
-  "warning": "black feather",
-  "peace": "white feather",
-  "blood": "red feather",
-  "secret": "blue feather",
-  "betrayal": "broken feather",
-  "valuable item": "egg",
-  "major prize": "golden egg",
-  "trap": "rotten egg",
-  "lockbox": "shell",
-  "chest": "shell",
-  "dagger": "beak",
-  "weapon": "talon",
-  "lockpick": "claw",
-  "disguise": "wing",
-  "bad disguise": "plucked wing",
-  "password": "song",
-  "coin purse": "seed bag",
-  "clue": "breadcrumb",
-  "clues": "breadcrumbs",
+  // PLACES
+  ["Places", "safehouse", "pond"],
+  ["Places", "safe house", "pond"],
+  ["Places", "hideout", "nest"],
+  ["Places", "stash", "nest"],
+  ["Places", "home", "home nest"],
+  ["Places", "old hideout", "old nest"],
+  ["Places", "safe place", "warm nest"],
+  ["Places", "unsafe place", "cold nest"],
+  ["Places", "abandoned place", "empty nest"],
+  ["Places", "secret room", "hollow tree"],
+  ["Places", "hidden path", "reedbed"],
+  ["Places", "alley", "reedbed"],
+  ["Places", "street", "branchway"],
+  ["Places", "road", "flightpath"],
+  ["Places", "bridge", "long perch"],
+  ["Places", "market", "market seeds"],
+  ["Places", "marketplace", "market seeds"],
+  ["Places", "shop", "seed stall"],
+  ["Places", "tavern", "roost"],
+  ["Places", "inn", "roost"],
+  ["Places", "bar", "roost"],
+  ["Places", "pub", "roost"],
+  ["Places", "alehouse", "wet roost"],
+  ["Places", "noble district", "high branch"],
+  ["Places", "rich district", "high branch"],
+  ["Places", "slums", "low branch"],
+  ["Places", "poor district", "low branch"],
+  ["Places", "dangerous district", "marsh"],
+  ["Places", "prison", "cage"],
+  ["Places", "jail", "cage"],
+  ["Places", "guardhouse", "coop"],
+  ["Places", "barracks", "hawk nest"],
+  ["Places", "guildhall", "aviary"],
+  ["Places", "temple", "white nest"],
+  ["Places", "church", "white nest"],
+  ["Places", "graveyard", "quiet field"],
+  ["Places", "docks", "gull roost"],
+  ["Places", "harbor", "gull roost"],
+  ["Places", "city walls", "cliffs"],
+  ["Places", "gate", "beakway"],
+  ["Places", "forest", "deep branches"],
+  ["Places", "woods", "deep branches"],
 
-  "escape": "take wing",
-  "run": "take wing",
-  "leave quickly": "take wing",
-  "stay hidden": "fly low",
-  "act boldly": "fly high",
-  "watch": "circle",
-  "scout": "circle",
-  "wait": "perch",
-  "hide overnight": "roost",
-  "hide": "nest",
-  "open a lock": "crack the shell",
-  "steal": "pluck",
-  "pretend": "preen",
-  "confess": "sing sour",
-  "lie": "sing sweet",
-  "warn": "chirp",
-  "raise alarm": "caw",
-  "attack": "peck",
-  "leave a mark": "scratch",
-  "plan": "brood",
-  "travel far": "migrate",
-  "change identity": "molt",
-  "start the plan": "hatch",
-  "fail": "lay an egg",
-  "cause trouble": "ruffle feathers",
-  "stop escape": "clip wings",
-  "pay the crew": "feed the flock",
-  "follow clues": "follow the crumbs",
+  // OBJECTS
+  ["Objects", "coin", "shiny seed"],
+  ["Objects", "gold", "shiny seed"],
+  ["Objects", "silver", "pale seed"],
+  ["Objects", "copper", "dull seed"],
+  ["Objects", "money", "seeds"],
+  ["Objects", "payment", "feed"],
+  ["Objects", "large payment", "fat seed"],
+  ["Objects", "fake coin", "cracked seed"],
+  ["Objects", "message", "feather"],
+  ["Objects", "letter", "feather"],
+  ["Objects", "note", "small feather"],
+  ["Objects", "warning", "black feather"],
+  ["Objects", "peace", "white feather"],
+  ["Objects", "blood", "red feather"],
+  ["Objects", "secret", "blue feather"],
+  ["Objects", "valuable item", "egg"],
+  ["Objects", "treasure", "golden egg"],
+  ["Objects", "major prize", "golden egg"],
+  ["Objects", "trap", "rotten egg"],
+  ["Objects", "lockbox", "shell"],
+  ["Objects", "chest", "shell"],
+  ["Objects", "door", "hard wing"],
+  ["Objects", "key", "silver claw"],
+  ["Objects", "lock", "closed shell"],
+  ["Objects", "dagger", "beak"],
+  ["Objects", "knife", "beak"],
+  ["Objects", "sword", "long beak"],
+  ["Objects", "weapon", "talon"],
+  ["Objects", "bow", "bent branch"],
+  ["Objects", "arrow", "sharp feather"],
+  ["Objects", "armor", "hard feathers"],
+  ["Objects", "cloak", "wing"],
+  ["Objects", "disguise", "wing"],
+  ["Objects", "bad disguise", "plucked wing"],
+  ["Objects", "lockpick", "claw"],
+  ["Objects", "password", "song"],
+  ["Objects", "coin purse", "seed bag"],
+  ["Objects", "bag", "crop"],
+  ["Objects", "map", "flight chart"],
+  ["Objects", "clue", "breadcrumb"],
+  ["Objects", "clues", "breadcrumbs"],
+  ["Objects", "evidence", "loose feathers"],
 
-  "danger": "storm",
-  "violence": "thunder",
-  "immediate attack": "lightning",
-  "trouble": "rain",
-  "confusion": "fog",
-  "safe": "clear skies",
-  "all clear": "still water",
-  "something feels wrong": "ripples",
-  "injured": "broken wing",
-  "compromised": "broken wing",
-  "captured": "snared",
-  "imprisoned": "caged",
-  "being followed": "hunted",
-  "guards nearby": "hawks circling",
-  "hidden enemy": "fox in the reeds",
-  "assassin nearby": "cat in the yard",
-  "talking too much": "open beak",
-  "evidence": "loose feathers",
-  "someone got hurt": "bloody feathers",
-  "no help": "empty sky",
+  // FOOD / DRINK
+  ["Food & Drink", "food", "feed"],
+  ["Food & Drink", "meal", "feed"],
+  ["Food & Drink", "bread", "crumbs"],
+  ["Food & Drink", "meat", "red feed"],
+  ["Food & Drink", "fish", "silver swimmer"],
+  ["Food & Drink", "water", "clear pond"],
+  ["Food & Drink", "drink", "wet seed"],
+  ["Food & Drink", "ale", "golden pond"],
+  ["Food & Drink", "beer", "golden pond"],
+  ["Food & Drink", "wine", "red pond"],
+  ["Food & Drink", "liquor", "fire pond"],
+  ["Food & Drink", "rum", "dock water"],
+  ["Food & Drink", "tea", "leaf water"],
+  ["Food & Drink", "coffee", "black pond"],
+  ["Food & Drink", "drinking", "wetting the beak"],
+  ["Food & Drink", "drunk", "feather-fallen"],
 
-  "dawn": "first song",
-  "morning": "morning flight",
-  "noon": "high sun",
-  "evening": "long shadow",
-  "dusk": "last song",
-  "night": "moonflight",
-  "late night": "owl hour",
-  "very early morning": "before the flock wakes",
-  "after midnight": "after the roost quiets",
-  "time to leave": "migration season",
-  "plan begins": "hatching day",
+  // ACTIONS
+  ["Actions", "escape", "take wing"],
+  ["Actions", "run", "take wing"],
+  ["Actions", "flee", "take wing"],
+  ["Actions", "leave quickly", "take wing"],
+  ["Actions", "leave", "migrate"],
+  ["Actions", "travel", "migrate"],
+  ["Actions", "stay hidden", "fly low"],
+  ["Actions", "hide", "nest"],
+  ["Actions", "sneak", "fly low"],
+  ["Actions", "act boldly", "fly high"],
+  ["Actions", "watch", "circle"],
+  ["Actions", "scout", "circle"],
+  ["Actions", "spy on", "crow-watch"],
+  ["Actions", "wait", "perch"],
+  ["Actions", "sleep", "roost"],
+  ["Actions", "rest", "roost"],
+  ["Actions", "open a lock", "crack the shell"],
+  ["Actions", "unlock", "crack the shell"],
+  ["Actions", "break in", "raid the nest"],
+  ["Actions", "steal", "pluck"],
+  ["Actions", "rob", "pluck clean"],
+  ["Actions", "pickpocket", "seed-snatch"],
+  ["Actions", "loot", "egg lift"],
+  ["Actions", "smuggle", "feather pass"],
+  ["Actions", "pretend", "preen"],
+  ["Actions", "disguise", "wear wings"],
+  ["Actions", "confess", "sing sour"],
+  ["Actions", "tell the truth", "sing sour"],
+  ["Actions", "lie", "sing sweet"],
+  ["Actions", "talk", "sing"],
+  ["Actions", "warn", "chirp"],
+  ["Actions", "raise alarm", "caw"],
+  ["Actions", "attack", "peck"],
+  ["Actions", "stab", "peck"],
+  ["Actions", "kill", "blacken the feathers"],
+  ["Actions", "hurt", "ruffle hard"],
+  ["Actions", "follow", "trail the crumbs"],
+  ["Actions", "follow clues", "follow the crumbs"],
+  ["Actions", "leave a mark", "scratch"],
+  ["Actions", "plan", "brood"],
+  ["Actions", "change identity", "molt"],
+  ["Actions", "start the plan", "hatch"],
+  ["Actions", "fail", "lay an egg"],
+  ["Actions", "cause trouble", "ruffle feathers"],
+  ["Actions", "stop escape", "clip wings"],
+  ["Actions", "pay the crew", "feed the flock"],
+  ["Actions", "betray", "break the feather"],
+  ["Actions", "bribe", "feed the hawk"],
+  ["Actions", "buy", "trade seeds"],
+  ["Actions", "sell", "scatter seeds"],
+  ["Actions", "meet", "flock"],
+  ["Actions", "gather", "flock"],
 
-  "target": "worm",
-  "rich target": "fat worm",
-  "easy target": "blind worm",
-  "dangerous target": "thorny worm",
-  "burglary": "nest raid",
-  "theft": "egg lift",
-  "smuggling": "feather pass",
-  "stealth mission": "silent flight",
-  "escape at night": "night migration",
-  "lockpicking": "shell cracking",
-  "forged message": "false song",
-  "stolen identity": "borrowed feathers",
-  "cover tracks": "clipped trail",
-  "lost trail": "cold trail",
-  "recent tracks": "fresh crumbs"
-};
+  // DANGER / STATUS
+  ["Danger & Status", "danger", "storm"],
+  ["Danger & Status", "violence", "thunder"],
+  ["Danger & Status", "immediate attack", "lightning"],
+  ["Danger & Status", "trouble", "rain"],
+  ["Danger & Status", "confusion", "fog"],
+  ["Danger & Status", "safe", "clear skies"],
+  ["Danger & Status", "all clear", "still water"],
+  ["Danger & Status", "something feels wrong", "ripples"],
+  ["Danger & Status", "injured", "broken wing"],
+  ["Danger & Status", "wounded", "broken wing"],
+  ["Danger & Status", "compromised", "broken wing"],
+  ["Danger & Status", "captured", "snared"],
+  ["Danger & Status", "imprisoned", "caged"],
+  ["Danger & Status", "being followed", "hunted"],
+  ["Danger & Status", "guards nearby", "hawks circling"],
+  ["Danger & Status", "hidden enemy", "fox in the reeds"],
+  ["Danger & Status", "assassin nearby", "cat in the yard"],
+  ["Danger & Status", "talking too much", "open beak"],
+  ["Danger & Status", "someone got hurt", "bloody feathers"],
+  ["Danger & Status", "no help", "empty sky"],
+  ["Danger & Status", "dead", "fallen from the sky"],
+  ["Danger & Status", "suspicious", "raised feathers"],
+  ["Danger & Status", "hostile", "sharp beak"],
+  ["Danger & Status", "untrustworthy", "cold wing"],
+
+  // EMOTIONS
+  ["Emotions", "happy", "bright feathers"],
+  ["Emotions", "joyful", "sunlit wings"],
+  ["Emotions", "excited", "fluttering wings"],
+  ["Emotions", "nervous", "shaking feathers"],
+  ["Emotions", "afraid", "small wings"],
+  ["Emotions", "scared", "small wings"],
+  ["Emotions", "terrified", "clipped breath"],
+  ["Emotions", "sad", "heavy wings"],
+  ["Emotions", "grieving", "rain-soaked feathers"],
+  ["Emotions", "angry", "ruffled"],
+  ["Emotions", "furious", "storm-feathered"],
+  ["Emotions", "annoyed", "pricked feathers"],
+  ["Emotions", "calm", "still water"],
+  ["Emotions", "peaceful", "soft pond"],
+  ["Emotions", "friendly", "soft feathers"],
+  ["Emotions", "protective", "warm wing"],
+  ["Emotions", "lonely", "empty branch"],
+  ["Emotions", "confused", "fog-eyed"],
+  ["Emotions", "curious", "bright-eyed"],
+  ["Emotions", "hopeful", "wings lifting"],
+  ["Emotions", "ashamed", "tucked beak"],
+  ["Emotions", "embarrassed", "pink feathers"],
+  ["Emotions", "proud", "high crest"],
+  ["Emotions", "jealous", "green feathered"],
+  ["Emotions", "guilty", "muddy feet"],
+  ["Emotions", "in love", "paired wings"],
+  ["Emotions", "heartbroken", "cracked egg"],
+  ["Emotions", "tired", "drooping wings"],
+  ["Emotions", "suspicious", "side-eyed owl"],
+
+  // TIME
+  ["Time", "dawn", "first song"],
+  ["Time", "morning", "morning flight"],
+  ["Time", "noon", "high sun"],
+  ["Time", "afternoon", "warm branch"],
+  ["Time", "evening", "long shadow"],
+  ["Time", "dusk", "last song"],
+  ["Time", "night", "moonflight"],
+  ["Time", "late night", "owl hour"],
+  ["Time", "very early morning", "before the flock wakes"],
+  ["Time", "after midnight", "after the roost quiets"],
+  ["Time", "soon", "before the next wingbeat"],
+  ["Time", "later", "after the next flight"],
+  ["Time", "tomorrow", "next sunrise"],
+  ["Time", "yesterday", "last sunrise"],
+  ["Time", "time to leave", "migration season"],
+  ["Time", "plan begins", "hatching day"],
+
+  // CRIME / JOB TERMS
+  ["Crime", "target", "worm"],
+  ["Crime", "rich target", "fat worm"],
+  ["Crime", "easy target", "blind worm"],
+  ["Crime", "dangerous target", "thorny worm"],
+  ["Crime", "burglary", "nest raid"],
+  ["Crime", "theft", "egg lift"],
+  ["Crime", "job", "flight"],
+  ["Crime", "mission", "flight"],
+  ["Crime", "heist", "great flight"],
+  ["Crime", "stealth mission", "silent flight"],
+  ["Crime", "escape at night", "night migration"],
+  ["Crime", "lockpicking", "shell cracking"],
+  ["Crime", "forged message", "false song"],
+  ["Crime", "fake document", "false feather"],
+  ["Crime", "stolen identity", "borrowed feathers"],
+  ["Crime", "cover tracks", "clipped trail"],
+  ["Crime", "lost trail", "cold trail"],
+  ["Crime", "recent tracks", "fresh crumbs"],
+  ["Crime", "witness", "watching owl"],
+  ["Crime", "mark", "worm"],
+  ["Crime", "victim", "plucked worm"],
+
+  // COMMON PHRASES
+  ["Phrases", "hello", "clear skies"],
+  ["Phrases", "goodbye", "take wing"],
+  ["Phrases", "thank you", "warm wings"],
+  ["Phrases", "yes", "wings up"],
+  ["Phrases", "no", "wings down"],
+  ["Phrases", "maybe", "foggy skies"],
+  ["Phrases", "be quiet", "still beak"],
+  ["Phrases", "be careful", "mind the hawks"],
+  ["Phrases", "hurry", "flap fast"],
+  ["Phrases", "follow me", "trail my feathers"],
+  ["Phrases", "trust me", "share my pond"],
+  ["Phrases", "do not trust him", "his wing is cold"],
+  ["Phrases", "we are safe", "the pond is quiet"],
+  ["Phrases", "we are in danger", "storm over the pond"],
+  ["Phrases", "guards are coming", "hawks are circling"],
+  ["Phrases", "meet me at the tavern", "flock at the roost"],
+  ["Phrases", "the money is hidden", "the seeds are nested"],
+  ["Phrases", "steal the gold", "pluck the shiny seeds"]
+];
 
 const examples = [
   "There are guards near the safehouse",
@@ -252,43 +486,67 @@ const examples = [
   "The spy left a warning",
   "Stay hidden until dusk",
   "The guards are surrounding the money",
-  "Someone betrayed the hideout"
+  "Someone betrayed the hideout",
+  "Meet me at the tavern",
+  "The king is watching Karric",
+  "The queen sent a message to Old Vare",
+  "The Free Seats are in danger",
+  "Cassandra Caravana knows the secret"
 ];
 
 function escapeRegExp(string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+function getDictionaryObject() {
+  const dictionary = {};
+  entries.forEach(([category, english, cant]) => {
+    dictionary[english] = cant;
+  });
+  return dictionary;
+}
+
 function translateText() {
   let text = document.getElementById("input").value;
   const mode = document.getElementById("mode").value;
-
-  let entries = Object.entries(dictionary);
+  let dictionary = getDictionaryObject();
+  let pairs = Object.entries(dictionary);
 
   if (mode === "fromCant") {
-    entries = entries.map(([english, cant]) => [cant, english]);
+    pairs = pairs.map(([english, cant]) => [cant, english]);
   }
 
-  entries.sort((a, b) => b[0].length - a[0].length);
+  pairs.sort((a, b) => b[0].length - a[0].length);
 
-  for (const [from, to] of entries) {
+  for (const [from, to] of pairs) {
     const regex = new RegExp("\\b" + escapeRegExp(from) + "\\b", "gi");
     text = text.replace(regex, to);
   }
 
-  document.getElementById("output").innerText = text;
+  document.getElementById("output").innerText = text || "Your translation will appear here...";
 }
 
 function loadDictionary() {
   const search = document.getElementById("search").value.toLowerCase();
+  const selectedCategory = document.getElementById("categoryFilter").value;
   let html = "";
 
-  Object.entries(dictionary).forEach(([english, cant]) => {
-    if (
+  entries.forEach(([category, english, cant]) => {
+    const matchesSearch =
       english.toLowerCase().includes(search) ||
-      cant.toLowerCase().includes(search)
-    ) {
-      html += `<div class="entry"><b>${english}</b> → <span class="cant">${cant}</span></div>`;
+      cant.toLowerCase().includes(search) ||
+      category.toLowerCase().includes(search);
+
+    const matchesCategory =
+      selectedCategory === "All" || selectedCategory === category;
+
+    if (matchesSearch && matchesCategory) {
+      html += `
+        <div class="entry">
+          <div class="small">${category}</div>
+          <b>${english}</b> → <span class="cant">${cant}</span>
+        </div>
+      `;
     }
   });
 
@@ -302,6 +560,30 @@ function randomPhrase() {
   translateText();
 }
 
+function clearText() {
+  document.getElementById("input").value = "";
+  document.getElementById("output").innerText = "Your translation will appear here...";
+}
+
+function loadCategories() {
+  const categories = [...new Set(entries.map(entry => entry[0]))];
+  const select = document.getElementById("categoryFilter");
+  const pills = document.getElementById("categoryPills");
+
+  categories.forEach(category => {
+    const option = document.createElement("option");
+    option.value = category;
+    option.textContent = category;
+    select.appendChild(option);
+
+    const pill = document.createElement("span");
+    pill.className = "pill";
+    pill.textContent = category;
+    pills.appendChild(pill);
+  });
+}
+
+loadCategories();
 loadDictionary();
 </script>
 
