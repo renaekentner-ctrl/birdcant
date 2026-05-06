@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Feathercant Translator</title>
+  <style>
+    body {
+      background: #18181b;
+      color: white;
+      font-family: Arial;
+      padding: 40px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    textarea {
+      width: 100%;
+      height: 140px;
+      background: #27272a;
+      color: white;
+      border: 1px solid #3f3f46;
+      border-radius: 10px;
+      padding: 12px;
+      margin-top: 10px;
+    }
+
+    button {
+      background: white;
+      color: black;
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .box {
+      background: #27272a;
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🪶 Feathercant Translator</h1>
+
+<textarea id="input" placeholder="Type a phrase..."></textarea>
+
+<br>
+<button onclick="translateText()">Translate</button>
+
+<div class="box">
+  <h2>Translation</h2>
+  <div id="output"></div>
+</div>
+
+<div class="box">
+  <h2>Dictionary</h2>
+  <div id="dictionary"></div>
+</div>
+
+<script>
+const dictionary = {
+  "guard": "hawk",
+  "guards": "hawks",
+  "gold": "shiny seed",
+  "money": "seeds",
+  "safehouse": "pond",
+  "hideout": "nest",
+  "danger": "storm",
+  "friend": "mallard",
+  "spy": "crow",
+  "assassin": "raven",
+  "target": "worm",
+  "escape": "take wing",
+  "meeting": "flock",
+  "weapon": "talon",
+  "thief": "magpie",
+  "night": "moonflight",
+  "warning": "black feather",
+  "secret": "blue feather"
+};
+
+function translateText() {
+  let text = document.getElementById("input").value.toLowerCase();
+
+  for (const [plain, cant] of Object.entries(dictionary)) {
+    const regex = new RegExp("\\\\b" + plain + "\\\\b", "gi");
+    text = text.replace(regex, cant);
+  }
+
+  document.getElementById("output").innerText = text;
+}
+
+function loadDictionary() {
+  let html = "";
+
+  for (const [plain, cant] of Object.entries(dictionary)) {
+    html += `<p><b>${plain}</b> → ${cant}</p>`;
+  }
+
+  document.getElementById("dictionary").innerHTML = html;
+}
+
+loadDictionary();
+</script>
+
+</body>
+</html>
