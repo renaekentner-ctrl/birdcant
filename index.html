@@ -123,6 +123,7 @@
 <script>
 const entries = [
   // PEOPLE
+  ["People", "cat", "Dippy"],
   ["People", "friend", "mallard"],
   ["People", "trusted friend", "mallard"],
   ["People", "ally", "mallard"],
@@ -167,37 +168,68 @@ const entries = [
   ["People", "enemy", "fox"],
   ["People", "traitor", "broken feather"],
 
-  // DREN / WORLD CODE NAMES
+  // DREN CODES
   ["Dren Codes", "Dren", "the Great Nest"],
+  ["Dren Codes", "Halden", "the Quiet Branch"],
+  ["Dren Codes", "Karric", "the Trade Roost"],
+  ["Dren Codes", "Surn", "the Sun Perch"],
+  ["Dren Codes", "Skarlen", "the Iron Branch"],
+  ["Dren Codes", "Ekdmere", "the Deep Reed"],
+  ["Dren Codes", "Bramble", "the Thorn Nest"],
+  ["Dren Codes", "Saltwick", "the Gull Perch"],
+  ["Dren Codes", "Old Vare", "the Dry River Nest"],
   ["Dren Codes", "realm", "the Great Nest"],
   ["Dren Codes", "kingdom", "the Great Nest"],
-  ["Dren Codes", "the king", "the Crowned Hawk"],
+  ["Dren Codes", "capital", "the Crown Nest"],
   ["Dren Codes", "king", "the Crowned Hawk"],
-  ["Dren Codes", "the queen", "the Silver Swan"],
+  ["Dren Codes", "the king", "the Crowned Hawk"],
   ["Dren Codes", "queen", "the Silver Swan"],
+  ["Dren Codes", "the queen", "the Silver Swan"],
   ["Dren Codes", "royal family", "the High Roost"],
   ["Dren Codes", "royal court", "the High Roost"],
-  ["Dren Codes", "the sovereigns", "the Three Great Wings"],
-  ["Dren Codes", "sovereigns", "the Three Great Wings"],
+  ["Dren Codes", "sovereign", "Great Wing"],
+  ["Dren Codes", "the sovereign", "the Great Wing"],
+  ["Dren Codes", "sovereigns", "Great Wings"],
+  ["Dren Codes", "the sovereigns", "the Great Wings"],
   ["Dren Codes", "three sovereigns", "the Three Great Wings"],
+  ["Dren Codes", "the three sovereigns", "the Three Great Wings"],
   ["Dren Codes", "free seats", "the Open Perches"],
   ["Dren Codes", "the free seats", "the Open Perches"],
-  ["Dren Codes", "capital", "the Crown Nest"],
-  ["Dren Codes", "Old Vare", "the Dry River Nest"],
-  ["Dren Codes", "old vare", "the Dry River Nest"],
-  ["Dren Codes", "Ekdmere", "the Deep Reed"],
-  ["Dren Codes", "ekdmere", "the Deep Reed"],
-  ["Dren Codes", "Karric", "the Trade Roost"],
-  ["Dren Codes", "karric", "the Trade Roost"],
   ["Dren Codes", "Nagamori", "the Iron Crane"],
-  ["Dren Codes", "nagamori", "the Iron Crane"],
   ["Dren Codes", "Iskavara", "the Ash Raven"],
-  ["Dren Codes", "iskavara", "the Ash Raven"],
   ["Dren Codes", "Cassandra Caravana", "the Red Jay"],
-  ["Dren Codes", "cassandra caravana", "the Red Jay"],
   ["Dren Codes", "religion of Old Vare", "the River Song"],
   ["Dren Codes", "vow-water", "blessed pond"],
-  ["Dren Codes", "Vow-Water", "blessed pond"],
+
+  // CONNECTOR WORDS
+  ["Connector Words", "and", "coo"],
+  ["Connector Words", "or", "cluck"],
+  ["Connector Words", "but", "ruffle"],
+  ["Connector Words", "because", "since the wind says"],
+  ["Connector Words", "so", "so the wings turn"],
+  ["Connector Words", "then", "next wingbeat"],
+  ["Connector Words", "if", "should the egg crack"],
+  ["Connector Words", "when", "what wingbeat"],
+  ["Connector Words", "where", "which branch"],
+  ["Connector Words", "why", "what stirred the nest"],
+  ["Connector Words", "how", "by what wing"],
+  ["Connector Words", "who", "which bird"],
+  ["Connector Words", "what", "which feather"],
+  ["Connector Words", "with", "wing-to-wing with"],
+  ["Connector Words", "without", "wingless of"],
+  ["Connector Words", "before", "before first flap"],
+  ["Connector Words", "after", "after last flap"],
+  ["Connector Words", "during", "under the same sky as"],
+  ["Connector Words", "while", "while wings beat"],
+  ["Connector Words", "until", "until the branch bends"],
+  ["Connector Words", "unless", "unless the crow calls"],
+  ["Connector Words", "although", "even with ruffled feathers"],
+  ["Connector Words", "however", "storm-turn"],
+  ["Connector Words", "also", "another feather"],
+  ["Connector Words", "again", "second song"],
+  ["Connector Words", "very", "full-feathered"],
+  ["Connector Words", "really", "deep in the nest"],
+  ["Connector Words", "not", "no-wing"],
 
   // COMMON WORDS
   ["Common Words", "go", "fly"],
@@ -238,72 +270,6 @@ const entries = [
   ["Common Words", "find", "spot"],
   ["Common Words", "lost", "off the flightpath"],
 
-  // MORE DREN PLACE CODES
-  ["Dren Codes", "Halden", "the Quiet Branch"],
-  ["Dren Codes", "halden", "the Quiet Branch"],
-
-    ["Dren Codes", "Dren", "the Great Nest"],
-  ["Dren Codes", "dren", "the Great Nest"],
-
-  ["Dren Codes", "Halden", "the Quiet Branch"],
-  ["Dren Codes", "halden", "the Quiet Branch"],
-
-  ["Dren Codes", "Karric", "the Trade Roost"],
-  ["Dren Codes", "karric", "the Trade Roost"],
-
-  ["Dren Codes", "Surn", "the Sun Perch"],
-  ["Dren Codes", "surn", "the Sun Perch"],
-
-  ["Dren Codes", "Skarlen", "the Iron Branch"],
-  ["Dren Codes", "skarlen", "the Iron Branch"],
-
-  ["Dren Codes", "Ekdmere", "the Deep Reed"],
-  ["Dren Codes", "ekdmere", "the Deep Reed"],
-
-  ["Dren Codes", "Bramble", "the Thorn Nest"],
-  ["Dren Codes", "bramble", "the Thorn Nest"],
-
-  ["Dren Codes", "Saltwick", "the Gull Perch"],
-  ["Dren Codes", "saltwick", "the Gull Perch"],
-
-  ["Dren Codes", "Old Vare", "the Dry River Nest"],
-  ["Dren Codes", "old vare", "the Dry River Nest"],
-
-  ["Dren Codes", "Free Seats", "the Open Perches"],
-  ["Dren Codes", "free seats", "the Open Perches"],
-
-  ["Dren Codes", "the Free Seats", "the Open Perches"],
-  ["Dren Codes", "the free seats", "the Open Perches"],
-
-  ["Dren Codes", "king", "the Crowned Hawk"],
-  ["Dren Codes", "the king", "the Crowned Hawk"],
-
-  ["Dren Codes", "queen", "the Silver Swan"],
-  ["Dren Codes", "the queen", "the Silver Swan"],
-
-  ["Dren Codes", "sovereigns", "the Three Great Wings"],
-  ["Dren Codes", "the sovereigns", "the Three Great Wings"],
-
-  ["Dren Codes", "Three Sovereigns", "the Three Great Wings"],
-  ["Dren Codes", "three sovereigns", "the Three Great Wings"],
-  
-  ["Dren Codes", "Sovereign", "Great Wing"],
-["Dren Codes", "sovereign", "Great Wing"],
-
-["Dren Codes", "Sovereigns", "Great Wings"],
-["Dren Codes", "sovereigns", "Great Wings"],
-
-["Dren Codes", "the Sovereign", "the Great Wing"],
-["Dren Codes", "the sovereign", "the Great Wing"],
-
-["Dren Codes", "the Sovereigns", "the Great Wings"],
-["Dren Codes", "the sovereigns", "the Great Wings"],
-
-["Dren Codes", "Three Sovereigns", "the Three Great Wings"],
-["Dren Codes", "three sovereigns", "the Three Great Wings"],
-["Dren Codes", "the Three Sovereigns", "the Three Great Wings"],
-["Dren Codes", "the three sovereigns", "the Three Great Wings"],
-  
   // PLACES
   ["Places", "safehouse", "pond"],
   ["Places", "safe house", "pond"],
@@ -392,7 +358,7 @@ const entries = [
   ["Objects", "clues", "breadcrumbs"],
   ["Objects", "evidence", "loose feathers"],
 
-  // FOOD / DRINK
+  // FOOD & DRINK
   ["Food & Drink", "food", "feed"],
   ["Food & Drink", "meal", "feed"],
   ["Food & Drink", "bread", "crumbs"],
@@ -436,7 +402,6 @@ const entries = [
   ["Actions", "loot", "egg lift"],
   ["Actions", "smuggle", "feather pass"],
   ["Actions", "pretend", "preen"],
-  ["Actions", "disguise", "wear wings"],
   ["Actions", "confess", "sing sour"],
   ["Actions", "tell the truth", "sing sour"],
   ["Actions", "lie", "sing sweet"],
@@ -464,7 +429,7 @@ const entries = [
   ["Actions", "meet", "flock"],
   ["Actions", "gather", "flock"],
 
-  // DANGER / STATUS
+  // DANGER & STATUS
   ["Danger & Status", "danger", "storm"],
   ["Danger & Status", "violence", "thunder"],
   ["Danger & Status", "immediate attack", "lightning"],
@@ -495,6 +460,8 @@ const entries = [
   ["Emotions", "joyful", "sunlit wings"],
   ["Emotions", "excited", "fluttering wings"],
   ["Emotions", "nervous", "shaking feathers"],
+  ["Emotions", "worried", "storm-eyed"],
+  ["Emotions", "anxious", "trembling feathers"],
   ["Emotions", "afraid", "small wings"],
   ["Emotions", "scared", "small wings"],
   ["Emotions", "terrified", "clipped breath"],
@@ -507,18 +474,29 @@ const entries = [
   ["Emotions", "peaceful", "soft pond"],
   ["Emotions", "friendly", "soft feathers"],
   ["Emotions", "protective", "warm wing"],
-  ["Emotions", "lonely", "empty branch"],
+  ["Emotions", "lonely", "empty perch"],
   ["Emotions", "confused", "fog-eyed"],
   ["Emotions", "curious", "bright-eyed"],
-  ["Emotions", "hopeful", "wings lifting"],
+  ["Emotions", "hopeful", "sun-winged"],
+  ["Emotions", "hopeless", "skyless"],
   ["Emotions", "ashamed", "tucked beak"],
   ["Emotions", "embarrassed", "pink feathers"],
   ["Emotions", "proud", "high crest"],
   ["Emotions", "jealous", "green feathered"],
   ["Emotions", "guilty", "muddy feet"],
+  ["Emotions", "love", "paired wings"],
   ["Emotions", "in love", "paired wings"],
+  ["Emotions", "hate", "black-feather"],
   ["Emotions", "heartbroken", "cracked egg"],
   ["Emotions", "tired", "drooping wings"],
+  ["Emotions", "brave", "wide-winged"],
+  ["Emotions", "reckless", "storm-diving"],
+  ["Emotions", "forgiving", "open-winged"],
+  ["Emotions", "grateful", "warm-crop"],
+  ["Emotions", "confident", "crest-high"],
+  ["Emotions", "determined", "beak-forward"],
+  ["Emotions", "playful", "splash-winged"],
+  ["Emotions", "panicked", "scattered-winged"],
   ["Emotions", "suspicious", "side-eyed owl"],
 
   // TIME
@@ -539,7 +517,7 @@ const entries = [
   ["Time", "time to leave", "migration season"],
   ["Time", "plan begins", "hatching day"],
 
-  // CRIME / JOB TERMS
+  // CRIME
   ["Crime", "target", "worm"],
   ["Crime", "rich target", "fat worm"],
   ["Crime", "easy target", "blind worm"],
@@ -562,7 +540,62 @@ const entries = [
   ["Crime", "mark", "worm"],
   ["Crime", "victim", "plucked worm"],
 
-  // COMMON PHRASES
+  // DND WORDS
+  ["DND Words", "adventure", "long flight"],
+  ["DND Words", "quest", "chosen flight"],
+  ["DND Words", "party", "traveling flock"],
+  ["DND Words", "hero", "bright-wing"],
+  ["DND Words", "villain", "black-beak"],
+  ["DND Words", "monster", "fangbird"],
+  ["DND Words", "beast", "wild wing"],
+  ["DND Words", "dragon", "skyfire"],
+  ["DND Words", "dungeon", "deep cage"],
+  ["DND Words", "cave", "stone nest"],
+  ["DND Words", "ruins", "broken nest"],
+  ["DND Words", "castle", "stone roost"],
+  ["DND Words", "palace", "golden roost"],
+  ["DND Words", "town", "many nests"],
+  ["DND Words", "village", "small flock"],
+  ["DND Words", "city", "great roost"],
+  ["DND Words", "camp", "temporary nest"],
+  ["DND Words", "mountain", "high stone"],
+  ["DND Words", "river", "long pond"],
+  ["DND Words", "sea", "endless pond"],
+  ["DND Words", "desert", "dry sky"],
+  ["DND Words", "swamp", "muddy reeds"],
+  ["DND Words", "spell", "strange song"],
+  ["DND Words", "magic", "old song"],
+  ["DND Words", "curse", "crooked song"],
+  ["DND Words", "blessing", "warm song"],
+  ["DND Words", "ritual", "circle song"],
+  ["DND Words", "potion", "bottled pond"],
+  ["DND Words", "scroll", "rolled feather"],
+  ["DND Words", "wand", "singing twig"],
+  ["DND Words", "staff", "long branch"],
+  ["DND Words", "artifact", "ancient egg"],
+  ["DND Words", "relic", "old egg"],
+  ["DND Words", "guild", "aviary"],
+  ["DND Words", "faction", "separate flock"],
+  ["DND Words", "army", "war flock"],
+  ["DND Words", "war", "storm season"],
+  ["DND Words", "battle", "talon dance"],
+  ["DND Words", "fight", "feather clash"],
+  ["DND Words", "law", "cage rule"],
+  ["DND Words", "crime", "shadow flight"],
+  ["DND Words", "blacksmith", "iron beak"],
+  ["DND Words", "ranger", "branch-walker"],
+  ["DND Words", "rogue", "shadow magpie"],
+  ["DND Words", "warlock", "borrowed-song"],
+  ["DND Words", "fighter", "talon-hand"],
+  ["DND Words", "bard", "bright singer"],
+  ["DND Words", "cleric", "vow-singer"],
+  ["DND Words", "druid", "leaf-wing"],
+  ["DND Words", "paladin", "oath-hawk"],
+  ["DND Words", "sorcerer", "blood-song"],
+  ["DND Words", "barbarian", "storm-goose"],
+  ["DND Words", "monk", "quiet talon"],
+
+  // PHRASES
   ["Phrases", "hello", "clear skies"],
   ["Phrases", "goodbye", "take wing"],
   ["Phrases", "thank you", "warm wings"],
@@ -596,7 +629,9 @@ const examples = [
   "The king is watching Karric",
   "The queen sent a message to Old Vare",
   "The Free Seats are in danger",
-  "Cassandra Caravana knows the secret"
+  "Cassandra Caravana knows the secret",
+  "Who loves Cat and why",
+  "Do not go to Halden"
 ];
 
 function escapeRegExp(string) {
