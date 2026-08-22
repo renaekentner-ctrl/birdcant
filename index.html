@@ -1537,6 +1537,15 @@ const entries = [
   ["Numbers & Amounts", "everything", "whole nest"],
   ["Numbers & Amounts", "nothing", "empty shell"],
 
+  // BASIC EVERYDAY WORDS
+  ["Core Language", "people", "flockfolk"],
+  ["Core Language", "person", "bird"],
+  ["Core Language", "look", "scan the reeds"],
+  ["Core Language", "looks", "scans the reeds"],
+  ["Core Language", "looking", "scanning the reeds"],
+  ["Core Language", "looked", "scanned the reeds"],
+  ["Core Language", "for", "after"],
+
   // PRACTICAL PHRASES
   ["Practical Phrases", "I'm hurt", "this bird has a broken wing"],
   ["Practical Phrases", "I'm sad", "this bird carries heavy wings"],
@@ -1644,8 +1653,8 @@ function translateText() {
     const escaped = escapeRegExp(from);
     const startsWithWord = /^[A-Za-z0-9_]/.test(from);
     const endsWithWord = /[A-Za-z0-9_]$/.test(from);
-    const leftBoundary = startsWithWord ? "\b" : "";
-    const rightBoundary = endsWithWord ? "\b" : "";
+    const leftBoundary = startsWithWord ? "\\b" : "";
+    const rightBoundary = endsWithWord ? "\\b" : "";
     const regex = new RegExp(leftBoundary + escaped + rightBoundary, "gi");
 
     workingText = workingText.replace(regex, () => {
