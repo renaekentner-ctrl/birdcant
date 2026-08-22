@@ -84,8 +84,7 @@
 <body>
 
 <h1>🦆 Birdcant Translator</h1>
-<p class="small">A bird-themed thieves' cant used across Dren's underworld, with local codes, trade slang, and secret phrases.</p>
-<p class="small"><span id="entryCount"></span> dictionary entries.</p>
+<p class="small">A secret bird-themed cant for Mallard and the flock.</p>
 
 <div class="box">
   <h2>Translator</h2>
@@ -633,7 +632,7 @@ const entries = [
   ["DND Words", "dragon", "skyfire"],
   ["DND Words", "dungeon", "deep cage"],
   ["DND Words", "cave", "stone nest"],
-  ["DND Words", "ruins", "fallen nest"],
+  ["DND Words", "ruins", "broken nest"],
   ["DND Words", "castle", "stone roost"],
   ["DND Words", "palace", "golden roost"],
   ["DND Words", "town", "many nests"],
@@ -677,13 +676,34 @@ const entries = [
   ["DND Words", "barbarian", "storm-goose"],
   ["DND Words", "monk", "quiet talon"],
 
-  // PLAYER CODES - EXPANDED
+  // PHRASES
+  ["Phrases", "hello", "clear skies"],
+  ["Phrases", "goodbye", "take wing"],
+  ["Phrases", "thank you", "warm wings"],
+  ["Phrases", "yes", "wings up"],
+  ["Phrases", "no", "wings down"],
+  ["Phrases", "maybe", "foggy skies"],
+  ["Phrases", "be quiet", "still beak"],
+  ["Phrases", "be careful", "mind the hawks"],
+  ["Phrases", "hurry", "flap fast"],
+  ["Phrases", "follow me", "trail my feathers"],
+  ["Phrases", "trust me", "share my pond"],
+  ["Phrases", "do not trust him", "his wing is cold"],
+  ["Phrases", "we are safe", "the pond is quiet"],
+  ["Phrases", "we are in danger", "storm over the pond"],
+  ["Phrases", "guards are coming", "hawks are circling"],
+  ["Phrases", "meet me at the tavern", "flock at the roost"],
+  ["Phrases", "the money is hidden", "the seeds are nested"],
+  ["Phrases", "steal the gold", "pluck the shiny seeds"],
+
+  // EXPANDED BIRDCANT DICTIONARY
+  // PLAYER CODES
   ["Player Codes", "Flynn", "Silver-Lark"],
   ["Player Codes", "Flynser Silverspring", "Silver-Lark"],
   ["Player Codes", "Dragonborn", "Scale-Wing"],
   ["Player Codes", "Bronze Dragonborn", "Thunder-Wing"],
 
-  // KARRIC CODES - EXPANDED
+  // KARRIC CODES
   ["Karric Codes", "The Crooked Feather Tavern", "the Bent Roost"],
   ["Karric Codes", "Crooked Feather Tavern", "the Bent Roost"],
   ["Karric Codes", "Crooked Feather", "the Bent Roost"],
@@ -706,7 +726,7 @@ const entries = [
   ["Karric Codes", "Order of the Quiet Nest", "Still Nest"],
   ["Karric Codes", "Quiet Nest", "Still Nest"],
 
-  // SHIMMERING WINDS - EXPANDED
+  // SHIMMERING WINDS
   ["Shimmering Winds", "Shimmering Winds", "bright storm"],
   ["Shimmering Winds", "the Shimmering Winds", "the bright storm"],
   ["Shimmering Winds", "wind event", "bright storm"],
@@ -730,8 +750,8 @@ const entries = [
   ["Shimmering Winds", "buyer of genuine wind objects", "egg collector"],
   ["Shimmering Winds", "Wind Market", "Storm Roost"],
   ["Shimmering Winds", "the Wind Market", "the Storm Roost"],
-  ["Shimmering Winds", "source of the strange objects", "broken nest"],
-  ["Shimmering Winds", "source of the wind objects", "broken nest"],
+  ["Shimmering Winds", "source of the strange objects", "split nest"],
+  ["Shimmering Winds", "source of the wind objects", "split nest"],
   ["Shimmering Winds", "strange magical reaction", "feathers flashing"],
   ["Shimmering Winds", "the winds are happening again", "bright storm returning"],
   ["Shimmering Winds", "the wind is happening again", "bright storm returning"],
@@ -743,7 +763,7 @@ const entries = [
   ["Shimmering Winds", "impossible place", "other sky"],
   ["Shimmering Winds", "the strange place", "other sky"],
 
-  // PEOPLE - EXPANDED
+  // PEOPLE
   ["People", "leader", "crest"],
   ["People", "boss", "high crest"],
   ["People", "guildmaster", "aviary crest"],
@@ -779,7 +799,7 @@ const entries = [
   ["People", "traveler", "migrating bird"],
   ["People", "caravan", "road flock"],
 
-  // COMMON WORDS - EXPANDED
+  // COMMON WORDS
   ["Common Words", "have", "carry"],
   ["Common Words", "has", "carries"],
   ["Common Words", "had", "carried"],
@@ -841,7 +861,7 @@ const entries = [
   ["Common Words", "up", "high branch"],
   ["Common Words", "down", "low branch"],
 
-  // PLACES - EXPANDED
+  // PLACES
   ["Places", "warehouse", "grain nest"],
   ["Places", "storage room", "grain nest"],
   ["Places", "cellar", "root nest"],
@@ -876,7 +896,7 @@ const entries = [
   ["Places", "dock warehouse", "gull granary"],
   ["Places", "caravan route", "long flightpath"],
 
-  // OBJECTS - EXPANDED
+  // OBJECTS
   ["Objects", "goods", "eggs"],
   ["Objects", "merchandise", "eggs"],
   ["Objects", "cargo", "nest-load"],
@@ -927,7 +947,7 @@ const entries = [
   ["Objects", "counterfeit item", "painted egg"],
   ["Objects", "unknown object", "mystery egg"],
 
-  // ACTIONS - EXPANDED
+  // ACTIONS
   ["Actions", "deliver", "pigeon-drop"],
   ["Actions", "collect", "gather seed"],
   ["Actions", "trade", "swap feathers"],
@@ -984,7 +1004,7 @@ const entries = [
   ["Actions", "stand guard", "hawk the branch"],
   ["Actions", "wait for signal", "perch for the chirp"],
 
-  // TRADE & UNDERWORLD - EXPANDED
+  // TRADE & UNDERWORLD
   ["Trade & Underworld", "underworld", "black flock"],
   ["Trade & Underworld", "criminal underworld", "black flock"],
   ["Trade & Underworld", "criminal network", "black flightpath"],
@@ -1047,7 +1067,7 @@ const entries = [
   ["Trade & Underworld", "inside job", "nest peck"],
   ["Trade & Underworld", "double cross", "split feather"],
 
-  // DANGER & STATUS - EXPANDED
+  // DANGER & STATUS
   ["Danger & Status", "watched", "under hawk eyes"],
   ["Danger & Status", "being watched", "under hawk eyes"],
   ["Danger & Status", "wanted", "hunted"],
@@ -1081,7 +1101,7 @@ const entries = [
   ["Danger & Status", "do not follow", "drop the crumbs"],
   ["Danger & Status", "get help", "call the flock"],
 
-  // TIME - EXPANDED
+  // TIME
   ["Time", "today", "this sunrise"],
   ["Time", "tonight", "this moonflight"],
   ["Time", "right now", "this featherbeat"],
@@ -1100,7 +1120,7 @@ const entries = [
   ["Time", "every day", "every sunrise"],
   ["Time", "every night", "every moonflight"],
 
-  // CRIME - EXPANDED
+  // CRIME
   ["Crime", "smuggling", "feather passing"],
   ["Crime", "illegal sale", "shadow scattering"],
   ["Crime", "fencing stolen goods", "nest-fencing"],
@@ -1130,7 +1150,7 @@ const entries = [
   ["Crime", "robbery", "pluck clean"],
   ["Crime", "counterfeit", "painted feather"],
 
-  // PHRASES - EXPANDED
+  // PHRASES
   ["Phrases", "who sent you", "which bird loosed your feather"],
   ["Phrases", "what do you want", "which seed are you eyeing"],
   ["Phrases", "how much", "how many seeds"],
@@ -1182,32 +1202,12 @@ const entries = [
   ["Phrases", "someone is buying the real objects", "an egg collector is plucking live eggs"],
   ["Phrases", "something is wrong beneath Karric", "ripples under the Trade Roost"],
   ["Phrases", "the Wind Market is below", "Storm Roost nests below"],
-  ["Phrases", "there is a strange source below", "a broken nest sits below"],
-  ["Phrases", "do not go near the source", "keep wings from the broken nest"],
+  ["Phrases", "there is a strange source below", "a split nest sits below"],
+  ["Phrases", "do not go near the source", "keep wings from the split nest"],
   ["Phrases", "the strange objects are dangerous", "storm eggs are turning rotten"],
   ["Phrases", "the winds are getting worse", "bright storm is growing teeth"],
 
-  // PHRASES
-  ["Phrases", "hello", "clear skies"],
-  ["Phrases", "goodbye", "take wing"],
-  ["Phrases", "thank you", "warm wings"],
-  ["Phrases", "yes", "wings up"],
-  ["Phrases", "no", "wings down"],
-  ["Phrases", "maybe", "foggy skies"],
-  ["Phrases", "be quiet", "still beak"],
-  ["Phrases", "be careful", "mind the hawks"],
-  ["Phrases", "hurry", "flap fast"],
-  ["Phrases", "follow me", "trail my feathers"],
-  ["Phrases", "trust me", "share my pond"],
-  ["Phrases", "do not trust him", "his wing is cold"],
-  ["Phrases", "we are safe", "the pond is quiet"],
-  ["Phrases", "we are in danger", "storm over the pond"],
-  ["Phrases", "guards are coming", "hawks are circling"],
-  ["Phrases", "meet me at the tavern", "flock at the roost"],
-  ["Phrases", "the money is hidden", "the seeds are nested"],
-  ["Phrases", "steal the gold", "pluck the shiny seeds"]
-
-  // CORE GRAMMAR & EVERYDAY LANGUAGE
+  // CORE LANGUAGE
   ["Core Language", "is", "perches"],
   ["Core Language", "are", "perch"],
   ["Core Language", "was", "perched"],
@@ -1215,9 +1215,6 @@ const entries = [
   ["Core Language", "be", "perch"],
   ["Core Language", "been", "perched"],
   ["Core Language", "being", "perching"],
-  ["Core Language", "have", "carry"],
-  ["Core Language", "has", "carries"],
-  ["Core Language", "had", "carried"],
   ["Core Language", "do", "flap"],
   ["Core Language", "does", "flaps"],
   ["Core Language", "did", "flapped"],
@@ -1249,32 +1246,17 @@ const entries = [
   ["Core Language", "I don't know", "this bird holds no song"],
   ["Core Language", "I understand", "this bird hears the song"],
   ["Core Language", "I don't understand", "this bird hears only fog"],
-  ["Core Language", "remember", "keep the song"],
-  ["Core Language", "forget", "lose the song"],
   ["Core Language", "remembered", "kept the song"],
   ["Core Language", "forgot", "lost the song"],
-  ["Core Language", "true", "clean song"],
-  ["Core Language", "false", "crooked song"],
-  ["Core Language", "right", "straight wing"],
   ["Core Language", "wrong", "crooked wing"],
-  ["Core Language", "same", "same feather"],
-  ["Core Language", "different", "other feather"],
   ["Core Language", "other", "other wing"],
   ["Core Language", "another", "next feather"],
-  ["Core Language", "all", "whole flock"],
-  ["Core Language", "none", "empty nest"],
   ["Core Language", "some", "few feathers"],
-  ["Core Language", "many", "thick flock"],
-  ["Core Language", "few", "thin flock"],
-  ["Core Language", "more", "more seed"],
-  ["Core Language", "less", "fewer crumbs"],
   ["Core Language", "most", "fattest flock"],
   ["Core Language", "least", "thinnest flock"],
-  ["Core Language", "enough", "full crop"],
-  ["Core Language", "too much", "crop bursting"],
   ["Core Language", "too little", "crop hollow"],
 
-  // EVERYDAY STATES & ADJECTIVES
+  // EVERYDAY STATES
   ["Everyday States", "broken", "split-feathered"],
   ["Everyday States", "breaking", "splitting feathers"],
   ["Everyday States", "break", "split the feather"],
@@ -1287,7 +1269,6 @@ const entries = [
   ["Everyday States", "whole", "whole-feathered"],
   ["Everyday States", "empty", "hollow-crop"],
   ["Everyday States", "full", "full-crop"],
-  ["Everyday States", "open", "spread-wing"],
   ["Everyday States", "closed", "folded-wing"],
   ["Everyday States", "locked", "hard-shelled"],
   ["Everyday States", "unlocked", "open-shelled"],
@@ -1311,19 +1292,15 @@ const entries = [
   ["Everyday States", "rotten", "bad-egg"],
   ["Everyday States", "sweet", "honey-seeded"],
   ["Everyday States", "sour", "sour-crop"],
-  ["Everyday States", "bitter", "bitter-seed"],
   ["Everyday States", "lucky", "four-leafed wing"],
   ["Everyday States", "unlucky", "crow-shadowed"],
   ["Everyday States", "ready", "wings spread"],
   ["Everyday States", "not ready", "wings folded"],
   ["Everyday States", "busy", "nest-full"],
-  ["Everyday States", "free", "open-skied"],
   ["Everyday States", "stuck", "mud-winged"],
-  ["Everyday States", "missing", "empty-perched"],
   ["Everyday States", "found", "back on branch"],
   ["Everyday States", "real", "live-feathered"],
   ["Everyday States", "fake", "painted-feathered"],
-  ["Everyday States", "important", "high-feathered"],
   ["Everyday States", "unimportant", "loose-feathered"],
   ["Everyday States", "possible", "wings may lift"],
   ["Everyday States", "impossible", "skyless"],
@@ -1352,13 +1329,11 @@ const entries = [
   ["Body & Health", "foot", "talon"],
   ["Body & Health", "feet", "talons"],
   ["Body & Health", "heart", "nest-heart"],
-  ["Body & Health", "blood", "red feather"],
   ["Body & Health", "bone", "white branch"],
   ["Body & Health", "skin", "outer feather"],
   ["Body & Health", "hair", "crest-feathers"],
   ["Body & Health", "breath", "wing-wind"],
   ["Body & Health", "voice", "song"],
-  ["Body & Health", "hurt", "ruffled hard"],
   ["Body & Health", "hurting", "wing-aching"],
   ["Body & Health", "pain", "thorn under wing"],
   ["Body & Health", "sick", "sour-cropped"],
@@ -1370,8 +1345,6 @@ const entries = [
   ["Body & Health", "poisoned", "bad-seeded"],
   ["Body & Health", "healed", "feathers mended"],
   ["Body & Health", "healing", "mending feathers"],
-  ["Body & Health", "unconscious", "deep-roosting"],
-  ["Body & Health", "awake", "eyes above wing"],
   ["Body & Health", "asleep", "roosting deep"],
   ["Body & Health", "hungry", "hollow-cropped"],
   ["Body & Health", "thirsty", "dry-beaked"],
@@ -1379,7 +1352,7 @@ const entries = [
   ["Body & Health", "stronger", "broader-winged"],
   ["Body & Health", "weaker", "thinner-winged"],
 
-  // EMOTIONS & REACTIONS EXPANSION
+  // EMOTIONS
   ["Emotions", "cry", "shed rain"],
   ["Emotions", "crying", "shedding rain"],
   ["Emotions", "cried", "shed rain"],
@@ -1387,17 +1360,11 @@ const entries = [
   ["Emotions", "upset", "ruffled-heart"],
   ["Emotions", "miserable", "rain-drowned"],
   ["Emotions", "hurt feelings", "bruised feathers"],
-  ["Emotions", "scared", "small wings"],
   ["Emotions", "fear", "fox-shadow"],
-  ["Emotions", "worried", "storm-eyed"],
   ["Emotions", "worry", "storm in the crop"],
   ["Emotions", "surprised", "crest-up"],
   ["Emotions", "shocked", "feathers blown"],
-  ["Emotions", "confused", "fog-eyed"],
-  ["Emotions", "confusion", "fog in the nest"],
-  ["Emotions", "angry", "ruffled"],
   ["Emotions", "anger", "red-feather heat"],
-  ["Emotions", "hate", "black-feather"],
   ["Emotions", "like", "warm-wing"],
   ["Emotions", "dislike", "cold-wing"],
   ["Emotions", "trust", "share the pond"],
@@ -1415,22 +1382,11 @@ const entries = [
   ["Emotions", "panicking", "flock scattering"],
 
   // COMMON VERBS
-  ["Common Verbs", "make", "build the nest"],
-  ["Common Verbs", "made", "built the nest"],
-  ["Common Verbs", "take", "pluck"],
   ["Common Verbs", "took", "plucked"],
-  ["Common Verbs", "give", "pass a feather"],
   ["Common Verbs", "gave", "passed a feather"],
-  ["Common Verbs", "keep", "nest"],
   ["Common Verbs", "kept", "nested"],
-  ["Common Verbs", "put", "set on branch"],
-  ["Common Verbs", "move", "shift branch"],
   ["Common Verbs", "moved", "shifted branch"],
-  ["Common Verbs", "stop", "fold wings"],
-  ["Common Verbs", "start", "first flap"],
-  ["Common Verbs", "begin", "first flap"],
   ["Common Verbs", "end", "last flap"],
-  ["Common Verbs", "finish", "lay the last feather"],
   ["Common Verbs", "use", "work the claw"],
   ["Common Verbs", "used", "worked the claw"],
   ["Common Verbs", "try", "test the wing"],
@@ -1453,38 +1409,28 @@ const entries = [
   ["Common Verbs", "pull", "talon-draw"],
   ["Common Verbs", "carry", "bear under wing"],
   ["Common Verbs", "carried", "bore under wing"],
-  ["Common Verbs", "bring", "wing it in"],
   ["Common Verbs", "brought", "winged it in"],
   ["Common Verbs", "send", "loose a pigeon"],
   ["Common Verbs", "sent", "loosed a pigeon"],
-  ["Common Verbs", "show", "spread the feathers"],
   ["Common Verbs", "showed", "spread the feathers"],
-  ["Common Verbs", "hide", "tuck under wing"],
   ["Common Verbs", "hid", "tucked under wing"],
   ["Common Verbs", "read", "peck the feather"],
   ["Common Verbs", "write", "scratch the feather"],
   ["Common Verbs", "wrote", "scratched the feather"],
-  ["Common Verbs", "ask", "chirp a question"],
   ["Common Verbs", "asked", "chirped a question"],
-  ["Common Verbs", "answer", "return the song"],
   ["Common Verbs", "answered", "returned the song"],
-  ["Common Verbs", "listen", "tilt the head"],
-  ["Common Verbs", "hear", "catch the song"],
   ["Common Verbs", "heard", "caught the song"],
   ["Common Verbs", "smell", "test the wind"],
   ["Common Verbs", "touch", "brush feathers"],
   ["Common Verbs", "touched", "brushed feathers"],
   ["Common Verbs", "feel", "read the wind"],
   ["Common Verbs", "felt", "read the wind"],
-  ["Common Verbs", "think", "brood"],
   ["Common Verbs", "thought", "brooded"],
-  ["Common Verbs", "believe", "trust the song"],
   ["Common Verbs", "believed", "trusted the song"],
   ["Common Verbs", "guess", "peck at fog"],
   ["Common Verbs", "learn", "catch a new song"],
   ["Common Verbs", "learned", "caught a new song"],
   ["Common Verbs", "teach", "share the song"],
-  ["Common Verbs", "wait", "perch"],
   ["Common Verbs", "work", "scratch the nest"],
   ["Common Verbs", "working", "scratching the nest"],
   ["Common Verbs", "live", "keep winging"],
@@ -1492,7 +1438,7 @@ const entries = [
   ["Common Verbs", "die", "fall from sky"],
   ["Common Verbs", "died", "fell from sky"],
 
-  // RELATIONSHIPS & SOCIAL
+  // RELATIONSHIPS
   ["Relationships", "family", "home flock"],
   ["Relationships", "parent", "old wing"],
   ["Relationships", "parents", "old wings"],
@@ -1502,34 +1448,23 @@ const entries = [
   ["Relationships", "brother", "brother-wing"],
   ["Relationships", "sibling", "nestmate"],
   ["Relationships", "siblings", "nestmates"],
-  ["Relationships", "child", "duckling"],
   ["Relationships", "children", "ducklings"],
   ["Relationships", "partner", "paired wing"],
   ["Relationships", "husband", "paired drake"],
   ["Relationships", "wife", "paired hen"],
   ["Relationships", "lover", "heart-wing"],
-  ["Relationships", "stranger", "unknown bird"],
   ["Relationships", "neighbor", "next-nest bird"],
-  ["Relationships", "boss", "top perch"],
-  ["Relationships", "leader", "lead wing"],
   ["Relationships", "follower", "trail wing"],
-  ["Relationships", "customer", "seed-bird"],
-  ["Relationships", "buyer", "seed-bird"],
-  ["Relationships", "seller", "seed-scatterer"],
   ["Relationships", "owner", "nest-holder"],
   ["Relationships", "worker", "nest-scratcher"],
   ["Relationships", "servant", "low-perch wing"],
   ["Relationships", "guest", "borrowed perch"],
   ["Relationships", "host", "roost-giver"],
 
-  // DIRECTIONS & POSITION
-  ["Directions", "left", "crow-wing"],
+  // DIRECTIONS
   ["Directions", "right side", "hawk-wing"],
   ["Directions", "straight", "true flight"],
-  ["Directions", "back", "tailward"],
   ["Directions", "forward", "beakward"],
-  ["Directions", "up", "skyward"],
-  ["Directions", "down", "groundward"],
   ["Directions", "above", "high branch"],
   ["Directions", "below", "low branch"],
   ["Directions", "under", "beneath wing"],
@@ -1577,7 +1512,6 @@ const entries = [
   ["Weather & Nature", "smoke", "grey feathers"],
   ["Weather & Nature", "ash", "dead feathers"],
   ["Weather & Nature", "shadow", "dark wing"],
-  ["Weather & Nature", "light", "bright wing"],
 
   // NUMBERS & AMOUNTS
   ["Numbers & Amounts", "one", "one feather"],
@@ -1603,7 +1537,7 @@ const entries = [
   ["Numbers & Amounts", "everything", "whole nest"],
   ["Numbers & Amounts", "nothing", "empty shell"],
 
-  // PRACTICAL TABLE PHRASES
+  // PRACTICAL PHRASES
   ["Practical Phrases", "I'm hurt", "this bird has a broken wing"],
   ["Practical Phrases", "I'm sad", "this bird carries heavy wings"],
   ["Practical Phrases", "I'm scared", "this bird has small wings"],
@@ -1627,7 +1561,6 @@ const entries = [
   ["Practical Phrases", "I trust you", "this bird shares your pond"],
   ["Practical Phrases", "I don't trust him", "that drake's wing is cold"],
   ["Practical Phrases", "I don't trust her", "that hen's wing is cold"],
-  ["Practical Phrases", "keep this secret", "nest this blue feather"],
   ["Practical Phrases", "tell me the truth", "sing sour to this bird"],
   ["Practical Phrases", "don't lie to me", "sing no sweet song to this bird"],
   ["Practical Phrases", "we should leave", "migration season for our flock"],
@@ -1643,10 +1576,7 @@ const entries = [
   ["Practical Phrases", "I lost it", "the egg fell off my flightpath"],
   ["Practical Phrases", "come with me", "wing-to-wing with this bird"],
   ["Practical Phrases", "wait here", "perch on this branch"],
-  ["Practical Phrases", "go now", "take wing this wingbeat"],
-  ["Practical Phrases", "run", "take wing"],
-  ["Practical Phrases", "stop", "fold wings"],
-
+  ["Practical Phrases", "go now", "take wing this wingbeat"]
 ];
 
 const examples = [
@@ -1692,7 +1622,7 @@ function getDictionaryObject() {
 }
 
 function translateText() {
-  let text = document.getElementById("input").value;
+  const originalText = document.getElementById("input").value;
   const mode = document.getElementById("mode").value;
   let dictionary = getDictionaryObject();
   let pairs = Object.entries(dictionary);
@@ -1701,14 +1631,36 @@ function translateText() {
     pairs = pairs.map(([english, cant]) => [cant, english]);
   }
 
+  // Translate longer phrases first so full expressions beat single words.
   pairs.sort((a, b) => b[0].length - a[0].length);
 
+  let workingText = originalText;
+  const replacements = [];
+
+  // Placeholders prevent newly-created Birdcant from being translated again.
   for (const [from, to] of pairs) {
-    const regex = new RegExp("\\b" + escapeRegExp(from) + "\\b", "gi");
-    text = text.replace(regex, to);
+    if (!from) continue;
+
+    const escaped = escapeRegExp(from);
+    const startsWithWord = /^[A-Za-z0-9_]/.test(from);
+    const endsWithWord = /[A-Za-z0-9_]$/.test(from);
+    const leftBoundary = startsWithWord ? "\b" : "";
+    const rightBoundary = endsWithWord ? "\b" : "";
+    const regex = new RegExp(leftBoundary + escaped + rightBoundary, "gi");
+
+    workingText = workingText.replace(regex, () => {
+      const token = `__BIRDCANT_${replacements.length}__`;
+      replacements.push(to);
+      return token;
+    });
   }
 
-  document.getElementById("output").innerText = text || "Your translation will appear here...";
+  replacements.forEach((replacement, index) => {
+    workingText = workingText.replace(`__BIRDCANT_${index}__`, replacement);
+  });
+
+  document.getElementById("output").innerText =
+    workingText || "Your translation will appear here...";
 }
 
 function loadDictionary() {
@@ -1768,7 +1720,6 @@ function loadCategories() {
   });
 }
 
-document.getElementById("entryCount").innerText = entries.length;
 loadCategories();
 loadDictionary();
 </script>
